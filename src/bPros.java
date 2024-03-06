@@ -1,10 +1,7 @@
+import java.util.*;
 import java.util.List;
-import java.util.Queue;
-import java.util.Stack;
-import java.util.LinkedList;
-import java.util.PriorityQueue;
 
-public class bPros extends BicycleArray{
+public class bPros extends BData {
 
     public static List<bAttr> pBList() {
         List<bAttr> bList = new LinkedList<>();
@@ -19,10 +16,9 @@ public class bPros extends BicycleArray{
     public static Stack<bAttr> pBStack(List<bAttr> bList) {
         Stack<bAttr> bStack = new Stack<>();
 
-        for (int i = 0; i < 100; i++) {
-           bAttr bicycle = new bAttr(i + 1);  // Start nameID from 1
+        for (bAttr bicycle : bList) {
             // Decrease speed by 25%
-            double decreasedSpeed = (bicycle.speed / 4);
+            double decreasedSpeed = (bicycle.speed * 0.75);
             // Set the decreased speed
             bicycle.speed = decreasedSpeed;
 
@@ -31,5 +27,20 @@ public class bPros extends BicycleArray{
         }
 
         return bStack;
+    }
+
+    public static PriorityQueue<bAttr> pBPQueue(List<bAttr> bList) {
+        // Use a custom comparator to compare bAttr objects based on their nameID
+        Comparator<bAttr> comparator = Comparator.comparingInt(b -> (int) b.nameID);
+        PriorityQueue<bAttr> bPQueue = new PriorityQueue<>(comparator);
+
+        // Add all elements to the priority queue
+        bPQueue.addAll(bList);
+
+        return bPQueue;
+    }
+
+    public static void removeLessThan10(List<bAttr> bList) {
+        bList.removeIf(bicycle -> bicycle.speed < 10);
     }
 }

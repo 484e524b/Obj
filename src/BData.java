@@ -1,7 +1,6 @@
-import java.util.LinkedList;
 import java.util.Random;
 
-public class BicycleArray {
+public class BData {
 
     public static class bAttr {
         int nameID;
